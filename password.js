@@ -53,11 +53,12 @@ function randomSymbol() {
 genButton.addEventListener("click", function () {
     //get values for elements above.
     // unary operator '+' will make it an int
-    var length = +passwordLength.value;
+    var lengthVal = +passwordLength.value;
     var lowerCheck = lowerEl.checked;
     var upperCheck = upperEl.checked;
     var symbolCheck = symbolEl.checked;
     var numCheck = numEl.checked;
+    passwordOut.textContent = passwordGenerator(lengthVal, lowerCheck, upperCheck, symbolCheck, numCheck)
 })
 
 
@@ -68,25 +69,21 @@ function randomRandomizer() {
     return randomArr[Math.floor(Math.random() * randomArr.length)]
 }
 
-// function passwordGenerator() {
-//     for (i = 0; i < passwordLength; i++) {
-//         if (lowerCheck === false) {
-//             delete randomArr[1];
-//         }
-//         if (upperCheck === false) {
-//             delete randomArr[2];
-//         }
-//         if (numCheck === false) {
-//             delete randomArr[0];
-//         }
-//         if (symbolCheck === false) {
-//             delete randomArr[3];
-//         }
-//         else {
-//             newPassword += randomRandomizer();
-//             giveNewPass();
-//         }
-//     }
-// }
+
+function passwordGenerator(length, lower, upper, symbol, num) {
+    var pw = " "
+    // when i click generate will count the number of types checked
+    var types = lower + upper + num + symbol;
+    var typeArr = [{ lower }, { upper }, { num }, { symbol }].filter(
+        item => Object.values(item)[0]
+    )
+    // can't figure out how to use .forEach on the typeArr. Found .filter to filter what is checked/unchecked
+    // let newArray = arr.filter(callback(element[, index, [array]])[, thisArg])
+    // notice have to put .filter on the actual array for it to work not add it afterwards
+    //filter item => Object(my obj).values(true or false) of the (item) at position [0]
+    console.log("typeArr:", typeArr)
+}
+// 
 
 
+passwordGenerator()
