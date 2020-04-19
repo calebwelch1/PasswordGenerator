@@ -58,7 +58,8 @@ genButton.addEventListener("click", function () {
     var upperCheck = upperEl.checked;
     var symbolCheck = symbolEl.checked;
     var numCheck = numEl.checked;
-    passwordOut.textContent = passwordGenerator(lengthVal, lowerCheck, upperCheck, symbolCheck, numCheck)
+    //must use .innerText and NOT .textContent
+    passwordOut.innerText = passwordGenerator(lengthVal, lowerCheck, upperCheck, symbolCheck, numCheck)
 })
 
 
@@ -68,7 +69,13 @@ randomArr = [randomNum(), randomLower(), randomUpper(), randomSymbol()]
 function randomRandomizer() {
     return randomArr[Math.floor(Math.random() * randomArr.length)]
 }
-
+// trashing the above idea. Going with an object instead.
+var randomObj = {
+    lower: randomLower,
+    upper: randomUpper,
+    num: randomNum,
+    symbol: randomSymbol
+}
 
 function passwordGenerator(length, lower, upper, symbol, num) {
     var pw = " "
@@ -84,8 +91,17 @@ function passwordGenerator(length, lower, upper, symbol, num) {
     console.log("typeArr:", typeArr)
 
     for (let i = 0; i < length; i++) {
-        typeArr.forEach(type => )
+        //loop through types array
+        typeArr.forEach(type => {
+            //key from our randomObj
+            var functionName = Object.keys(type)[0];
+
+            pw += randomObj[functionName]();
+        });
     }
+    passwordDone = pw.slice(0, length);
+    return passwordDone;
+    // too long
 }
 // 
 
