@@ -82,6 +82,10 @@ function passwordGenerator(length, lower, upper, symbol, num) {
     // notice have to put .filter on the actual array for it to work not add it afterwards
     //filter item => Object(my obj).values(true or false) of the (item) at position [0]
     console.log("typeArr:", typeArr)
+
+    for (let i = 0; i < length; i++) {
+        typeArr.forEach(type => )
+    }
 }
 // 
 
